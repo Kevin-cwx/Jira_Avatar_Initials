@@ -2,6 +2,29 @@ var log = console.log;
 const initialsInput = document.getElementById("initialsInput");
 initialsInput.value = "KF";
 
+// Dark mode functionality
+function initTheme() {
+  const darkModeToggle = document.getElementById("darkModeToggle");
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+  const savedTheme = localStorage.getItem("theme");
+
+  if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+    document.documentElement.setAttribute("data-theme", "dark");
+    darkModeToggle.textContent = "☀️";
+  }
+
+  darkModeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const newTheme = currentTheme === "dark" ? "light" : "dark";
+    
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    darkModeToggle.textContent = newTheme === "dark" ? "☀️" : "🌙";
+  });
+}
+
+initTheme();
+
 function generateRandomColor() {
   const letters = '0123456789ABCDEF';
   let color = '#';
@@ -45,7 +68,7 @@ colorPicker.addEventListener("input", updateAvatar);
 
 function downloadAvatar() {
   const canvas = document.createElement("canvas");
-  const size = 200; // Set the size of the canvas
+  const size = 200; 
   canvas.width = size;
   canvas.height = size;
   const ctx = canvas.getContext("2d");
