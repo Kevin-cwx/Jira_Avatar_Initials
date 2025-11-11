@@ -1,4 +1,4 @@
-# Jira Avatar — Initials Generator
+# Jira Avatar Initials Generator
 
 This small static project generates circular avatar images from initials (e.g. "KF") and allows downloading them as PNGs. 
 
